@@ -11,4 +11,9 @@ module.exports = function(app){
 
     app.get("/api/test", activeController.test);
     app.post("/api/save", activeController.save);
+    app.get("/api/actives", activeController.getActives);
+    app.get("/api/active/:id", activeController.getActive);
+    app.put("/api/updateActive/:id", activeController.update);
+    app.get("/api/cancellations", activeController.getCancellations);
+    app.get("/api/cancellation/:id", activeController.getCancellation);
 };

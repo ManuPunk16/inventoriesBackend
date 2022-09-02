@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+mongoose.set('useFindAndModify', false);
 
 const Actives = mongoose.model(
   "Actives",
@@ -15,6 +16,13 @@ const Actives = mongoose.model(
     unidad_administrativa: { type: String, required: true },
     estatus: { type: String, required: true },
     fotos: { type: String, required: true },
+    baja: [{
+      causa_baja: { type: String, required: false },
+      no_oficio: { type: String, required: false },
+      fecha_movimiento: { type: Date, required: false },
+      estatus_baja: { type: String, required: false },
+      observaciones: { type: String, required: false }
+    }],
     create_user: {
         id: String,
         username: String,
