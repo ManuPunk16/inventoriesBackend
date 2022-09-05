@@ -1,11 +1,29 @@
 var validator = require('validator');
 var Active = require('../models/actives.models');
+const multer  = require('multer');
+const upload = multer({ dest: 'uploads/' });
 
 exports.test = (req, res) => {
     console.log("Funcion de prueba exitoso");
     return res.status(200).send({
         message: 'Bien'
     });
+},
+
+exports.uploadSingleImage = (req, res) => {
+    upload.single("avatar"), function (req, res) {
+        const file = req.file;
+        console.log(file);
+        const description = req.body.description;
+    }
+},
+
+exports.uploadMultipleImage = (req, res) => {
+    upload.array("photos", 12), function (req, res) {
+        const file = req.file;
+        console.log(file);
+        const description = req.body.description;
+    }
 },
 
 exports.save = (req, res) => {
@@ -247,14 +265,4 @@ exports.getCancellations = (req, res) => {
             message: 'No existen registros'
         });
     }
-},
-
-exports.getCancellation = (req, res) => {
-    var activeId = req.params.id;
-    console.log(activeId);
-
-    return res.status(200).send({
-        status: 'success',
-        message: 'ok'
-    });
 }

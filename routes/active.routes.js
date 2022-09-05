@@ -1,4 +1,6 @@
 const activeController = require('../controllers/active.controller');
+const multer  = require('multer');
+const upload = multer({ dest: 'uploads/' });
 
 module.exports = function(app){
     app.use(function(req, res, next){
@@ -15,5 +17,7 @@ module.exports = function(app){
     app.get("/api/active/:id", activeController.getActive);
     app.put("/api/updateActive/:id", activeController.update);
     app.get("/api/cancellations", activeController.getCancellations);
-    app.get("/api/cancellation/:id", activeController.getCancellation);
+    app.get("/api/cancellation/:id", activeController.getActive);
+    app.post("/api/profile", activeController.uploadSingleImage);
+    app.post("/api/photos/upload", activeController.uploadMultipleImage);
 };
